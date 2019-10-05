@@ -203,10 +203,8 @@ if skip_ignore_event or not ignore_event(event_name, event_data):
         print("Pull request branch '%s' already exists for this commit. Skipping." % branch)
         sys.exit()
 
-    # Get the HEAD committer's email and name
-    author_email, author_name = get_head_author(event_name, event_data)
     # Set git configuration
-    set_git_config(repo.git, author_email, author_name)
+    set_git_config(repo.git, "openosrs.github@gmail.com", "OpenOSRS")
     # Checkout branch
     checkout_branch(repo.git, remote_exists, branch)
 
