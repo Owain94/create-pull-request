@@ -52,16 +52,6 @@ def remote_branch_exists(repo, branch):
     return False
 
 
-def get_head_author(event_name, event_data):
-    if event_name == "push":
-        email = "{head_commit[author][email]}".format(**event_data)
-        name = "{head_commit[author][name]}".format(**event_data)
-    else:
-        email = os.environ['GITHUB_ACTOR'] + '@users.noreply.github.com'
-        name = os.environ['GITHUB_ACTOR']
-    return email, name
-
-
 def set_git_config(git, email, name):
     git.config('--global', 'user.email', '"%s"' % email)
     git.config('--global', 'user.name', '"%s"' % name)
